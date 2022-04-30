@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @ObservedObject private var newsListVM = NewsListViewModel()
+    
+    init(){
+        newsListVM.load()
+    }
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            NewsListHeader()
+
+            NewsListView(newsCollection: self.newsListVM.news, imageData: self.newsListVM.imageData)
+        }
     }
 }
 
