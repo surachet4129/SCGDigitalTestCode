@@ -1,0 +1,45 @@
+import Foundation
+
+func isPalindrome(_ word: String) -> Bool {
+  guard word.count > 1 else{
+    return false
+  }
+
+  var arrWord: [String] = []
+  var rvsWord:  String  = ""
+  for char in word {
+    arrWord.insert(String(char), at: 0)
+    print(arrWord)
+  }
+
+  for char in arrWord {
+    rvsWord += char
+    print(char)
+  }
+
+  print(rvsWord)
+  if rvsWord.lowercased() == word.lowercased(){
+    return true
+  }else{
+    return false
+  }
+}
+
+//input => “aka”
+//output => “aka is a palindrome”
+let ex1 = "aka"
+
+//input => “Level”
+//output => “Level is a palindrome”
+let ex2 = "Level"
+
+//input => “Hello”
+//output => “Hello isn’t a palindrome”
+let ex3 = "Hello"
+
+let ex = ex2
+if isPalindrome(ex) {
+   print("\noutput: \(ex) is a palindrome")
+}else{
+  print("\noutput: \(ex) isn’t a palindrome")
+}
