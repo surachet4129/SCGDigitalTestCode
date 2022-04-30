@@ -1,0 +1,53 @@
+import Foundation
+
+func findMiddleIndexOfLRSum(_ numbers: [Int]) -> Int? {
+
+  guard numbers.count >= 3 else{
+    //return nil when can't find middle index
+    print("can't compare right sum and left sum.")
+    return nil
+  }
+
+  //start index at 1 and end index before last index  for compare left and right
+  for index in 1..<numbers.count-1 {
+    var right_sum: Int = 0
+    var left_sum : Int = 0
+   
+    print("\nindex: \(index)")
+
+    for increase_index in index+1...numbers.count-1{
+      print("increase_index: \(increase_index) [\(numbers[increase_index])]")
+      right_sum += numbers[increase_index]
+    }
+
+    for decrease_index in stride(from: index-1, through: 0, by: -1){
+      print("decrease_index: \(decrease_index) [\(numbers[decrease_index])]")
+      left_sum += numbers[decrease_index]
+    }
+
+    //compare right sum is equal left sum
+    print("right sum : \(right_sum) | left sum : \(left_sum)")
+    if right_sum == left_sum {
+      return index
+    }
+  }
+  return nil
+}
+
+//input => [1, 3, 5, 7, 9] 
+//output => “middle index is 3”
+let ex1 = [1, 3, 5, 7, 9]
+
+//input => [3, 6, 8, 1, 5, 10, 1, 7] 
+//output => “middle index is 4”
+let ex2 = [3, 6, 8, 1, 5, 10, 1, 7] 
+
+//input => [3, 5, 6] 
+//output => “index not found” 
+let ex3 = [3, 5, 6] 
+
+if let result = findMiddleIndexOfLRSum(ex2) {
+   print("\noutput: middle index is \(result)")
+}else{
+  print("\noutput: index not found")
+}
